@@ -1,0 +1,74 @@
+.reclamos-table {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.reclamos-table th {
+  background-color: #343a40;
+  color: white;
+}
+
+.reclamos-table td {
+  vertical-align: middle;
+}
+
+.back-button {
+  color: #000;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.back-button:hover {
+  color: #666;
+}
+
+.badge {
+  padding: 0.5em 0.8em;
+}
+
+.btn-sm {
+  padding: 0.25rem 1rem;
+}
+
+/* Estilos para los estados de los reclamos */
+.badge.bg-primary {
+  background-color: #007bff !important;
+}
+
+.badge.bg-warning {
+  background-color: #ffc107 !important;
+  color: #000;
+}
+
+.badge.bg-success {
+  background-color: #28a745 !important;
+}
+
+.badge.bg-danger {
+  background-color: #dc3545 !important;
+}
+
+/* Estilos para los botones de acción */
+.btn-warning {
+  color: #fff;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+  color: #fff;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}

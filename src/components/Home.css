@@ -1,0 +1,29 @@
+/* src/components/Home.css */
+.home-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  z-index: -1; /* Asegúrate de que el video esté detrás del contenido */
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegúrate de que el video cubra todo el contenedor */
+}
+
+.hero {
+  position: relative;
+  color: white;
+  text-align: center;
+  margin-top: 200px;
+  z-index: 1; /* Asegúrate de que el texto esté por encima del video */
+}

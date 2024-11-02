@@ -1,0 +1,50 @@
+/* Estilo general para la barra de navegación */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Espacio entre logo y botones */
+  align-items: center; /* Alinea verticalmente los elementos */
+  padding: 10px 20px; /* Espaciado interno */
+  background-color: #333; /* Color de fondo de la barra de navegación */
+}
+
+/* Estilo para el logo */
+.navbar-logo img {
+  height: 40px; /* Ajusta la altura del logo */
+}
+
+/* Estilo para el título */
+.navbar-title {
+  flex-grow: 1; /* Permite que el título ocupe el espacio central */
+  text-align: center; /* Centra el título */
+  color: white; /* Color del texto */
+  font-size: 24px; /* Tamaño de la fuente */
+}
+
+/* Estilo para los enlaces del menú */
+.nav-links {
+  display: flex;
+  gap: 15px; /* Espacio entre los botones */
+}
+
+/* Estilo para los elementos de la lista en el menú */
+.nav-links li {
+  list-style: none;
+  display: inline; /* Esto asegura que los elementos de la lista se muestren en línea */
+}
+
+/* Estilo para los enlaces dentro del menú */
+.nav-links li a {
+  color: white; /* Color del texto del enlace */
+  text-decoration: none; /* Quita el subrayado de los enlaces */
+  padding: 10px 15px; /* Ajusta el espaciado interno según tu diseño */
+  font-weight: bold; /* Estilo para el texto */
+  border: 2px solid red; /* Borde rojo */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Efectos de transición para color y fondo */
+}
+
+/* Estilo para el efecto hover en los enlaces */
+.nav-links li a:hover {
+  background-color: red; /* Color de fondo al pasar el mouse */
+  color: white; /* Color del texto al pasar el mouse */
+}

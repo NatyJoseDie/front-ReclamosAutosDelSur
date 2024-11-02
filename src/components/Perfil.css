@@ -1,0 +1,95 @@
+.perfil-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.foto-perfil-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.foto-perfil-preview {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid #0d6efd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-foto {
+  background-color: #0d6efd;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.btn-foto:hover {
+  background-color: #0a58ca;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #344767;
+}
+
+.form-control {
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+button[type="submit"] {
+  width: 100%;
+  background-color: #0d6efd;
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0a58ca;
+}
+
+button[type="submit"]:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #344767;
+}
+
+@media (max-width: 576px) {
+  .perfil-container {
+    margin: 0 15px;
+  }
+}

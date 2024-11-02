@@ -1,0 +1,189 @@
+/* Contenedor general */
+.login-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Columna izquierda con imagen */
+.login-left {
+  flex: 1;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/concesionaria.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Columna derecha */
+.login-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: #bcbbbbd6;
+}
+
+/* Texto fuera del cuadro de login */
+.login-info {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-header h1 {
+  font-size: 34px;
+  color: #0066cc;
+  margin-bottom: 10px;
+}
+
+.login-info p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Cuadro de login */
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.login-logo {
+  display: block;
+  margin: 0 auto 20px;
+  max-width: 200px;
+  height: auto;
+}
+
+
+/* Estilos de encabezado */
+h2 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Campos y botones del formulario */
+.form-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.password-group {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password,
+.help-button {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #666;
+  font-size: 20px;
+}
+
+.help-button {
+  right: 40px;
+  color: #0066cc;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0;
+  color: #666;
+  justify-content: flex-start; /* Asegura que el contenido se alinee a la izquierda */
+}
+
+.remember-me input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0; /* Elimina cualquier margen que pudiera causar desplazamiento */
+}
+
+
+.login-button {
+  width: 100%;
+  background-color: #0066cc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.login-footer {
+  text-align: center;
+}
+
+.forgot-password,
+.register-text a,
+.professional-login {
+  color: #0066cc;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Diseño responsive */
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .login-left {
+    display: none;
+  }
+
+  .login-right {
+    padding: 20px;
+  }
+
+  .login-card {
+    padding: 20px;
+  }
+}
+
+/* Mensaje de error */
+.alert-danger {
+  background-color: #fff3f3;
+  color: #dc3545;
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #dc3545;
+}
