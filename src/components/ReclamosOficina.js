@@ -65,7 +65,7 @@ const ReclamosOficina = () => {
       }
     } catch (error) {
       console.error('Error al atender reclamo:', error);
-      setError('Error al actualizar el estado del reclamo');
+      setError(error.response?.data?.mensaje || 'Error al actualizar el estado del reclamo');
     }
   };
 
@@ -74,7 +74,8 @@ const ReclamosOficina = () => {
       'Creado': 'primary',
       'En Proceso': 'warning',
       'Resuelto': 'success',
-      'Cancelado': 'danger'
+      'Cancelado': 'danger',
+      'Suspendido': 'secondary'
     };
     return badges[estado] || 'secondary';
   };
@@ -92,8 +93,8 @@ const ReclamosOficina = () => {
 
         <h2 className="text-center mb-4">Gestión de Reclamos</h2>
 
-        {error && <Alert variant="danger">{error}</Alert>}
-        {mensaje && <Alert variant="success">{mensaje}</Alert>}
+        {error && <Alert variant="danger" onClose={() => setError('')} dismissible>{error}</Alert>}
+        {mensaje && <Alert variant="success" onClose={() => setMensaje('')} dismissible>{mensaje}</Alert>}
 
         {loading ? (
           <div className="text-center">Cargando reclamos...</div>

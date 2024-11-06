@@ -57,7 +57,7 @@ function LoginProfesional() {
             navigate('/dashboard/admin');
             break;
           case 'EMPLEADO':
-            navigate('/dashboard/employee');
+            navigate('/reclamos-oficina');
             break;
           default:
             navigate('/dashboard');

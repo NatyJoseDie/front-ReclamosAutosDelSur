@@ -119,7 +119,7 @@ function Login() {
 
                   <Form.Group className="mb-4">
                     <Form.Label className="text-light">Contraseña</Form.Label>
-                    <div className="position-relative">
+                    <div className="input-group">
                       <Form.Control
                         type={showPassword ? "text" : "password"}
                         value={contrasenia}
@@ -133,23 +133,13 @@ function Login() {
                       />
                       <Button 
                         type="button"
-                        variant="link"
-                        className="position-absolute end-0 top-50 translate-middle-y"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setShowPassword(!showPassword);
-                        }}
-                        style={{ 
-                          zIndex: 2,
-                          background: 'transparent',
-                          border: 'none',
-                          color: '#6c757d'
+                        variant="outline-secondary"
+                        onClick={() => setShowPassword(!showPassword)}
+                        style={{
+                          backgroundColor: 'rgba(255, 255, 255, 0.9)',
                         }}
                       >
-                        <FontAwesomeIcon 
-                          icon={showPassword ? faEyeSlash : faEye} 
-                          style={{ fontSize: '1rem' }}
-                        />
+                        <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                       </Button>
                     </div>
                   </Form.Group>
