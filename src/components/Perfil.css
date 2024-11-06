@@ -1,10 +1,27 @@
+.perfil-page-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgba(33, 37, 41, 0.75);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-header {
+  margin-bottom: 20px;
+}
+
 .perfil-container {
   max-width: 400px;
-  margin: 0 auto;
+  margin: 100px auto; /* Mueve el contenedor hacia abajo */
   padding: 20px;
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-button:hover {
+  color: #e5e7eb !important;
 }
 
 .foto-perfil-container {
@@ -65,7 +82,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #0a58ca;
+  background-color: #c3d1e5;
 }
 
 button[type="submit"]:disabled {
@@ -88,8 +105,18 @@ label {
   color: #344767;
 }
 
+h1 {
+  color: #344767;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 @media (max-width: 576px) {
   .perfil-container {
     margin: 0 15px;
+  }
+  
+  .perfil-page-container {
+    padding: 10px;
   }
 }

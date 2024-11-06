@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { FaArrowLeft } from 'react-icons/fa';
 import './Perfil.css';
 
 function Perfil() {
+  const navigate = useNavigate();
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [correoElectronico, setCorreoElectronico] = useState('');
@@ -60,7 +64,7 @@ function Perfil() {
       if (imagen) {
         const formData = new FormData();
         formData.append('file', imagen);
-        formData.append('upload_preset', 'perfil_usuarios'); // Asegúrate de que el preset está en Cloudinary y configurado como "sin firmar"
+        formData.append('upload_preset', 'perfil_usuarios');
 
         const cloudinaryResponse = await fetch(
           'https://api.cloudinary.com/v1_1/dseo6ulep/image/upload',
@@ -116,63 +120,74 @@ function Perfil() {
   };
 
   return (
-    <div className="perfil-container">
-      <h1>Modificar Perfil</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="foto-perfil-container">
-          <img 
-            src={previewImage || 'https://via.placeholder.com/150'} 
-            alt="Foto de perfil" 
-            className="foto-perfil-preview"
-          />
+    <div className="perfil-page-container">
+      <div className="perfil-header">
+        <Button 
+          variant="link" 
+          className="back-button"
+          onClick={() => navigate(-1)}
+        >
+          <FaArrowLeft /> Volver
+        </Button>
+      </div>
+      
+      <div className="perfil-container">
+        <h1>Modificar Perfil</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="foto-perfil-container">
+            <img 
+              src={previewImage || 'https://via.placeholder.com/150'} 
+              alt="Foto de perfil" 
+              className="foto-perfil-preview"
+            />
+            <div>
+              <label htmlFor="foto-perfil" className="btn-foto">
+                Cambiar foto de perfil
+              </label>
+              <input
+                id="foto-perfil"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{ display: 'none' }}
+              />
+            </div>
+          </div>
+
           <div>
-            <label htmlFor="foto-perfil" className="btn-foto">
-              Cambiar foto de perfil
-            </label>
-            <input
-              id="foto-perfil"
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              style={{ display: 'none' }}
+            <label>Nombre:</label>
+            <input 
+              type="text" 
+              value={nombre} 
+              onChange={(e) => setNombre(e.target.value)} 
+              required 
             />
           </div>
-        </div>
-
-        <div>
-          <label>Nombre:</label>
-          <input 
-            type="text" 
-            value={nombre} 
-            onChange={(e) => setNombre(e.target.value)} 
-            required 
-          />
-        </div>
-        <div>
-          <label>Apellido:</label>
-          <input 
-            type="text" 
-            value={apellido} 
-            onChange={(e) => setApellido(e.target.value)} 
-            required 
-          />
-        </div>
-        <div>
-          <label>Correo Electrónico:</label>
-          <input 
-            type="email" 
-            value={correoElectronico} 
-            onChange={(e) => setCorreoElectronico(e.target.value)} 
-            required 
-          />
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? 'Actualizando...' : 'Actualizar Perfil'}
-        </button>
-      </form>
+          <div>
+            <label>Apellido:</label>
+            <input 
+              type="text" 
+              value={apellido} 
+              onChange={(e) => setApellido(e.target.value)} 
+              required 
+            />
+          </div>
+          <div>
+            <label>Correo Electrónico:</label>
+            <input 
+              type="email" 
+              value={correoElectronico} 
+              onChange={(e) => setCorreoElectronico(e.target.value)} 
+              required 
+            />
+          </div>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Actualizando...' : 'Actualizar Perfil'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
 
 export default Perfil;
-

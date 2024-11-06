@@ -13,6 +13,8 @@ import Notificaciones from './components/Notificaciones';
 import ClientDashboard from './components/dashboards/ClientDashboard';
 import AdminDashboard from './components/dashboards/AdminDashboard';
 import ReclamosOficina from './components/ReclamosOficina';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 

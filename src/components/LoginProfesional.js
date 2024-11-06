@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Container, Row, Col, Card } from 'react-bootstrap';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './Login.css';
 
 function LoginProfesional() {
@@ -16,6 +18,10 @@ function LoginProfesional() {
     e.preventDefault();
     setLoading(true);
     setError('');
+
+    // Limpiar sesión anterior
+    localStorage.clear();
+    delete axios.defaults.headers.common['Authorization'];
 
     try {
       const loginResponse = await axios.post('http://localhost:3555/api/v1/auth/login', {
@@ -32,7 +38,7 @@ function LoginProfesional() {
         const userData = perfilResponse.data.user;
 
         // Verificar si es personal interno (tipo 1 o 2)
-        if (userData.idUsuarioTipo === 3) {
+        if (userData.idUsuarioTipo !== 1 && userData.idUsuarioTipo !== 2) {
           setError('Acceso denegado. Esta entrada es solo para personal interno. Por favor, use el login principal.');
           localStorage.clear();
           return;
@@ -51,7 +57,7 @@ function LoginProfesional() {
             navigate('/dashboard/admin');
             break;
           case 'EMPLEADO':
-            navigate('/reclamos-oficina');
+            navigate('/dashboard/employee');
             break;
           default:
             navigate('/dashboard');
@@ -74,75 +80,116 @@ function LoginProfesional() {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-left">
-        {/* Fondo oscuro con gradiente */}
-      </div>
-      <div className="login-right">
-        <div className="login-header">
-          <h1>Acceso Interno - Autos del Sur</h1>
-          <p className="login-description">
-            Portal exclusivo para personal interno de la concesionaria.
-          </p>
-        </div>
-        
-        <div className="login-card">
-          <img src="/logo.png" alt="Logo Concesionaria" className="login-logo" />
-          <h2>Acceso Personal Interno</h2>
+    <section className="vh-100">
+      <Container fluid className="h-100">
+        <Row className="h-100">
+          <Col md={6} className="text-black d-flex align-items-center justify-content-center">
+            <Card className="px-5 py-5" style={{
+              borderRadius: '1rem', 
+              width: '100%', 
+              maxWidth: '500px',
+              backgroundColor: 'rgba(33, 37, 41, 0.9)',
+              color: 'white'
+            }}>
+              <Card.Body>
+                <div className="d-flex align-items-center mb-3 pb-1">
+                  <i className="bi bi-car-front-fill me-3 text-warning" style={{ fontSize: '2rem' }}></i>
+                  <span className="h1 fw-bold mb-0">Portal Interno</span>
+                </div>
 
-          {error && (
-            <Alert variant="danger" onClose={() => setError('')} dismissible>
-              {error}
-            </Alert>
-          )}
+                <h5 className="fw-normal mb-3 pb-3" style={{letterSpacing: '1px'}}>Acceso Personal Interno</h5>
 
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <input
-                type="email"
-                value={correoElectronico}
-                onChange={(e) => setCorreoElectronico(e.target.value)}
-                placeholder="Correo electrónico corporativo"
-                className="login-input"
-                required
-              />
+                {error && (
+                  <Alert variant="danger" onClose={() => setError('')} dismissible>
+                    {error}
+                  </Alert>
+                )}
+
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group className="mb-4">
+                    <Form.Label className="text-light">Correo corporativo</Form.Label>
+                    <Form.Control
+                      type="email"
+                      value={correoElectronico}
+                      onChange={(e) => setCorreoElectronico(e.target.value)}
+                      placeholder="usuario@autosdelsur.com"
+                      required
+                      style={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        border: 'none'
+                      }}
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-4">
+                    <Form.Label className="text-light">Contraseña</Form.Label>
+                    <div className="input-group">
+                      <Form.Control
+                        type={showPassword ? "text" : "password"}
+                        value={contrasenia}
+                        onChange={(e) => setContrasenia(e.target.value)}
+                        placeholder="Tu contraseña"
+                        required
+                        style={{
+                          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                          border: 'none'
+                        }}
+                      />
+                      <Button 
+                        type="button"
+                        variant="outline-secondary"
+                        onClick={() => setShowPassword(!showPassword)}
+                        style={{
+                          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        }}
+                      >
+                        <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                      </Button>
+                    </div>
+                  </Form.Group>
+
+                  <div className="pt-1 mb-4">
+                    <Button 
+                      type="submit" 
+                      variant="warning"
+                      className="btn-lg btn-block w-100"
+                      disabled={loading}
+                    >
+                      {loading ? 'Verificando credenciales...' : 'Acceder'}
+                    </Button>
+                  </div>
+
+                  <div className="text-center">
+                    <Link to="/login" className="btn btn-outline-light">
+                      Volver al login principal
+                    </Link>
+                  </div>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={6} className="d-none d-md-flex align-items-center justify-content-center" style={{
+            backgroundImage: `url('/concesionaria-interna.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}>
+            <div style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.6)',
+              padding: '2rem',
+              borderRadius: '1rem',
+              color: 'white',
+              textAlign: 'center'
+            }}>
+              <h2 className="mb-4">Portal Interno</h2>
+              <p>
+                Acceso exclusivo para personal de Autos del Sur.
+                Gestiona tus actividades y accede a las herramientas internas.
+              </p>
             </div>
-
-            <div className="form-group password-group">
-              <input
-                type={showPassword ? "text" : "password"}
-                value={contrasenia}
-                onChange={(e) => setContrasenia(e.target.value)}
-                placeholder="Contraseña"
-                className="login-input"
-                required
-              />
-              <button 
-                type="button" 
-                className="toggle-password"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? '👁️' : '👁️‍🗨️'}
-              </button>
-            </div>
-
-            <button 
-              type="submit" 
-              className="login-button" 
-              disabled={loading}
-            >
-              {loading ? 'Iniciando sesión...' : 'INGRESAR'}
-            </button>
-          </form>
-
-          <div className="login-footer">
-            <Link to="/login" className="back-to-login">
-              Volver al login principal
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Col>
+        </Row>
+      </Container>
+    </section>
   );
 }
 

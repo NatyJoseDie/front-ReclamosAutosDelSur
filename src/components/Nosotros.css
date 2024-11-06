@@ -1,14 +1,49 @@
-.nosotros-container {
-    padding: 50px;
-    text-align: center;
-  }
-  
-  .nosotros-container h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-  }
-  
-  .nosotros-container p {
-    font-size: 1.2em;
-  }
-  
+/* Variables */
+:root {
+  --primary-color: #0d6efd;
+  --text-color-dark: #333333;
+  --text-color-light: #666666;
+  --background-color: #f1f3f5; /* Color de fondo claro pero no blanco */
+  --card-background: #ffffff;
+  --border-color: #dee2e6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Página Principal */
+.nosotros-page {
+  background-color: var(--background-color);
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+/* Títulos y Subtítulos */
+h1, h2, h3, h4 {
+  color: var(--text-color-dark);
+}
+.section-title {
+  color: var(--primary-color); /* Título principal en color destacado */
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Cartas */
+.mission-card, .vision-card, .feature-card, .history-section {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  padding: 25px;
+  margin: 10px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-icon {
+  font-size: 2.5em;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+/* Historia */
+.history-section {
+  margin-top: 60px;
+}

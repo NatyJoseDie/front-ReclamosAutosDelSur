@@ -1,0 +1,33 @@
+.bg-dark {
+    background-color: #1a1a1a !important;
+  }
+  
+  .table-dark {
+    background-color: #2d2d2d;
+  }
+  
+  .card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table-responsive {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .table-responsive::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .table-responsive::-webkit-scrollbar-track {
+    background: #2d2d2d;
+  }
+  
+  .table-responsive::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  
+  .table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Alert } from 'react-bootstrap';
+import { Form, Button, Alert, Container, Row, Col, Card } from 'react-bootstrap';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './Login.css';
 
 function Login() {
@@ -74,95 +76,126 @@ function Login() {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-left">
-        {/* Fondo oscuro con gradiente */}
-      </div>
-      <div className="login-right">
-        {/* Encabezado fuera del cuadro de login */}
-        <div className="login-header">
-          <h1>Concesionaria Autos del Sur</h1>
-          <p className="login-description">
-            En nuestra concesionaria, nos especializamos en la venta de vehículos 
-            nuevos y usados, brindando el mejor servicio y asesoramiento personalizado.
-          </p>
-        </div>
-        
-        {/* Cuadro de login */}
-        <div className="login-card">
-          <img src="/logo.png" alt="Logo Concesionaria" className="login-logo" />
-          <h2>Inicia sesión</h2>
+    <section className="vh-100">
+      <Container fluid className="h-100">
+        <Row className="h-100">
+          <Col md={6} className="text-black d-flex align-items-center justify-content-center">
+            <Card className="px-5 py-5" style={{
+              borderRadius: '1rem', 
+              width: '100%', 
+              maxWidth: '500px',
+              backgroundColor: 'rgba(33, 37, 41, 0.9)',
+              color: 'white'
+            }}>
+              <Card.Body>
+                <div className="d-flex align-items-center mb-3 pb-1">
+                  <i className="bi bi-car-front-fill me-3 text-warning" style={{ fontSize: '2rem' }}></i>
+                  <span className="h1 fw-bold mb-0">Autos del Sur</span>
+                </div>
 
-          {error && (
-            <Alert variant="danger" onClose={() => setError('')} dismissible>
-              {error}
-            </Alert>
-          )}
+                <h5 className="fw-normal mb-3 pb-3" style={{letterSpacing: '1px'}}>Inicia sesión en tu cuenta</h5>
 
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <input
-                type="email"
-                value={correoElectronico}
-                onChange={(e) => setCorreoElectronico(e.target.value)}
-                placeholder="Correo electrónico"
-                className="login-input"
-                required
-              />
+                {error && (
+                  <Alert variant="danger" onClose={() => setError('')} dismissible>
+                    {error}
+                  </Alert>
+                )}
+
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group className="mb-4">
+                    <Form.Label className="text-light">Correo electrónico</Form.Label>
+                    <Form.Control
+                      type="email"
+                      value={correoElectronico}
+                      onChange={(e) => setCorreoElectronico(e.target.value)}
+                      placeholder="Ingrese su correo electrónico"
+                      required
+                      style={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        border: 'none'
+                      }}
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-4">
+                    <Form.Label className="text-light">Contraseña</Form.Label>
+                    <div className="position-relative">
+                      <Form.Control
+                        type={showPassword ? "text" : "password"}
+                        value={contrasenia}
+                        onChange={(e) => setContrasenia(e.target.value)}
+                        placeholder="Ingrese su contraseña"
+                        required
+                        style={{
+                          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                          border: 'none'
+                        }}
+                      />
+                      <Button 
+                        type="button"
+                        variant="link"
+                        className="position-absolute end-0 top-50 translate-middle-y"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setShowPassword(!showPassword);
+                        }}
+                        style={{ 
+                          zIndex: 2,
+                          background: 'transparent',
+                          border: 'none',
+                          color: '#6c757d'
+                        }}
+                      >
+                        <FontAwesomeIcon 
+                          icon={showPassword ? faEyeSlash : faEye} 
+                          style={{ fontSize: '1rem' }}
+                        />
+                      </Button>
+                    </div>
+                  </Form.Group>
+
+                  <div className="pt-1 mb-4">
+                    <Button 
+                      type="submit" 
+                      variant="warning"
+                      className="btn-lg btn-block w-100"
+                      disabled={loading}
+                    >
+                      {loading ? 'Iniciando sesión...' : 'Ingresar'}
+                    </Button>
+                  </div>
+
+                  <Link to="/forgot-password" className="small text-light">¿Olvidaste tu contraseña?</Link>
+                  <p className="mb-5 pb-lg-2 text-light">
+                    ¿No tienes una cuenta? <Link to="/register" className="text-warning">Regístrate aquí</Link>
+                  </p>
+                  <Link to="/login-profesional" className="small text-light">Acceso Interno</Link>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={6} className="d-none d-md-flex align-items-center justify-content-center" style={{
+            backgroundImage: `url('/concesionaria.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}>
+            <div style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.6)',
+              padding: '2rem',
+              borderRadius: '1rem',
+              color: 'white',
+              textAlign: 'center'
+            }}>
+              <h2 className="mb-4">Concesionaria Autos del Sur</h2>
+              <p>
+                En nuestra concesionaria, nos especializamos en la venta de vehículos 
+                nuevos y usados, brindando el mejor servicio y asesoramiento personalizado.
+              </p>
             </div>
-
-            <div className="form-group password-group">
-              <input
-                type={showPassword ? "text" : "password"}
-                value={contrasenia}
-                onChange={(e) => setContrasenia(e.target.value)}
-                placeholder="Contraseña"
-                className="login-input"
-                required
-              />
-              <button 
-                type="button" 
-                className="toggle-password"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? '👁️' : '👁️‍🗨️'}
-              </button>
-              <button type="button" className="help-button" title="Ayuda con la contraseña">
-                ?
-              </button>
-            </div>
-
-            <div className="remember-me">
-              <input
-                type="checkbox"
-                id="recordar"
-              />
-              <label htmlFor="recordar">Recordarme</label>
-            </div>
-
-            <button 
-              type="submit" 
-              className="login-button" 
-              disabled={loading}
-            >
-              {loading ? 'Iniciando sesión...' : 'INGRESAR'}
-            </button>
-          </form>
-
-          <div className="login-footer">
-            <Link to="/forgot-password" className="forgot-password">
-              ¿Has olvidado tu contraseña?
-            </Link>
-            <p className="register-text">
-              ¿No sos cliente aún? <Link to="/register">Registrate</Link>
-            </p>
-            <Link to="/login-profesional" className="professional-login">
-              ACCESO INTERNO
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Col>
+        </Row>
+      </Container>
+    </section>
   );
 }
 
